@@ -69,6 +69,7 @@ TARS_WEB_HOST=$5
 TARS_WEB_TOKEN=$6
 ADMIN_SERVER_IP=$7
 NODE_SERVER_IP=$8
+REBUILD=$9
 LOG_INFO "Mysql user:${MYSQL_USER}"
 LOG_INFO "Mysql pass:${MYSQL_PASS}"
 LOG_INFO "Mysql host:${MYSQL_HOST}"
@@ -77,10 +78,11 @@ LOG_INFO "Tars Web Host:${TARS_WEB_HOST}"
 LOG_INFO "Tars Web Token:${TARS_WEB_TOKEN}"
 LOG_INFO "Tars Admin IP:${ADMIN_SERVER_IP}"
 LOG_INFO "Tars Node IP:${NODE_SERVER_IP}"
+LOG_INFO "Rebuild:${REBUILD}"
 
 if (( $# < 8 ))
 then
-LOG_ERROR "You should run script like: ./install.sh MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP"
+LOG_ERROR "You should run script like: ./install.sh MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP IS_REBUILD(true or false)"
 exit 1
 fi
 
@@ -119,6 +121,8 @@ curl -s -X POST -H "Content-Type: application/json" \
   http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
   -d '{"application":"TarsTestToolKit","level":5,"server_name":"BackendApi","set_name":"","set_area":"","set_group":"","filename":"kv.yaml","config":"${kvConf}"}'
 
+if (( $REBUILD -eq "true" ))
+then
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
 cd TestUnits
@@ -128,6 +132,7 @@ cd ..
 
 ## build backend
 ./build-backend.sh
+fi
 
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
