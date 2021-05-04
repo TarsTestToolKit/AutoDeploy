@@ -134,7 +134,7 @@ fi
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
 curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
-  --form "suse=@./patches/GoTars.tgz" \
+  --form "suse=@./patches/GolangTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=GolangTars" \
   --form "comment=developer-auto-upload"
