@@ -91,6 +91,13 @@ exec_mysql_sql db_tars sql/services.sql
 
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
+cd TestUnits
+./build-docker.sh
+mv ./patches/* ../patches
+cd ..
+
+## build backend
+./build-backend.sh
 
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
@@ -103,7 +110,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 ## TestUnits.PhpTars
 LOG_INFO "upload_and_publish TestUnits.PhpTars"
 curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
-  --form "suse=@./patches/PhpTars.tgz" \
+  --form "suse=@./patches/PhpTars.tar.gz" \
   --form "application=TestUnits" \
   --form "module_name=PhpTars" \
   --form "comment=developer-auto-upload"
@@ -111,7 +118,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 ## TestUnits.JavaTars
 LOG_INFO "upload_and_publish TestUnits.JavaTars"
 curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
-  --form "suse=@./patches/JavaTars.tgz" \
+  --form "suse=@./patches/JavaTars.jar" \
   --form "application=TestUnits" \
   --form "module_name=JavaTars" \
   --form "comment=developer-auto-upload"
