@@ -88,6 +88,7 @@ function exec_mysql_sql()
 }
 MYSQL_PASS=$1
 exec_mysql_sql db_tars sql/services.sql
+exec_mysql_sql db_tars sql/db_test_tool_kit.sql
 
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
