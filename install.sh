@@ -92,8 +92,8 @@ function exec_mysql_sql()
 
     return $ret
 }
-sed -i "s/localip.tars.com/$NODE_SERVER_IP/g" sql/services.sql
-sed -i "s/localip.tarsadmin.com/$ADMIN_SERVER_IP/g" sql/services.sql
+sed -i "s/localip.tars.com/${NODE_SERVER_IP}/g" sql/services.sql
+sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" sql/services.sql
 exec_mysql_sql db_tars sql/services.sql
 exec_mysql_sql db_tars sql/db_test_tool_kit.sql
 
