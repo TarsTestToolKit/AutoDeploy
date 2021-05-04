@@ -78,6 +78,13 @@ LOG_INFO "Tars Web Token:${TARS_WEB_TOKEN}"
 LOG_INFO "Tars Admin IP:${ADMIN_SERVER_IP}"
 LOG_INFO "Tars Node IP:${NODE_SERVER_IP}"
 
+if (( $# < 8 ))
+then
+LOG_ERROR "You should run script like: ./install.sh MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP"
+exit 1
+fi
+
+LOG_INFO "Start to install TarsBenchmark"
 ## install TarsBenchmark
 ./install-tb.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${NODE_SERVER_IP}"
 
