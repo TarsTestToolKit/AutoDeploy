@@ -1,0 +1,13 @@
+configs:
+  test_db:
+    db_name: db_test_tool_kit
+    user_name: mysql.user
+    password: "mysql.password"
+    address: mysql.address
+    args: charset=utf8mb4&loc=Asia%2FShanghai&allowOldPasswords=true&parseTime=true
+  tars_db:
+    db_name: db_tars
+    user_name: mysql.user
+    password: "mysql.password"
+    address: mysql.address
+    args: charset=utf8mb4&loc=Asia%2FShanghai&allowOldPasswords=true&parseTime=true

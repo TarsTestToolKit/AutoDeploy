@@ -97,6 +97,21 @@ sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" sql/services.sql
 exec_mysql_sql db_tars sql/services.sql
 exec_mysql_sql db_tars sql/db_test_tool_kit.sql
 
+sed -i "s/mysql.user/${MYSQL_USER}/g" config/db.yaml
+sed -i "s/mysql.password/${MYSQL_PASS}/g" config/db.yaml
+sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" config/db.yaml
+sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" config/kv.yaml
+sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" config/kv.yaml
+
+dbConf=`cat config/db.yaml`
+kvConf=`cat config/kv.yaml`
+curl -s -X POST -H "Content-Type: application/json" \
+  http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
+  -d '{"application":"TarsTestToolKit","level":5,"server_name":"BackendApi","set_name":"","set_area":"","set_group":"","filename":"db.yaml","config":"${dbConf}"}'
+curl -s -X POST -H "Content-Type: application/json" \
+  http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
+  -d '{"application":"TarsTestToolKit","level":5,"server_name":"BackendApi","set_name":"","set_area":"","set_group":"","filename":"kv.yaml","config":"${kvConf}"}'
+
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
 cd TestUnits
