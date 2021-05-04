@@ -61,19 +61,25 @@ function LOG_INFO()
 	echo -e "\033[32m $msg \033[0m"
 }
 
-TARS_WEB_HOST=$1
-TARS_WEB_TOKEN=$2
-ADMIN_SERVER_IP=$3
-NODE_SERVER_IP=$4
+MYSQL_HOST=$1
+MYSQL_PORT=$2
+MYSQL_USER=$3
+MYSQL_PASS=$4
+TARS_WEB_HOST=$5
+TARS_WEB_TOKEN=$6
+ADMIN_SERVER_IP=$7
+NODE_SERVER_IP=$8
+LOG_INFO "Mysql user:${MYSQL_USER}"
+LOG_INFO "Mysql pass:${MYSQL_PASS}"
+LOG_INFO "Mysql host:${MYSQL_HOST}"
+LOG_INFO "Mysql port:${MYSQL_PORT}"
 LOG_INFO "Tars Web Host:${TARS_WEB_HOST}"
 LOG_INFO "Tars Web Token:${TARS_WEB_TOKEN}"
 LOG_INFO "Tars Admin IP:${ADMIN_SERVER_IP}"
 LOG_INFO "Tars Node IP:${NODE_SERVER_IP}"
 
 ## install TarsBenchmark
-git clone https://github.com/TarsCloud/TarsBenchmark.git TarsBenchmark
-cd TarsBenchmark || exit 1
-./TarsBenchmark/install.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${NODE_SERVER_IP}"
+./install-tb.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${NODE_SERVER_IP}"
 
 #exec sql
 function exec_mysql_sql()
@@ -86,7 +92,6 @@ function exec_mysql_sql()
 
     return $ret
 }
-MYSQL_PASS=$1
 exec_mysql_sql db_tars sql/services.sql
 exec_mysql_sql db_tars sql/db_test_tool_kit.sql
 
