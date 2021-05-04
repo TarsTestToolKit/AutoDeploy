@@ -27,7 +27,7 @@ LOG_INFO "Admins IP:${ADMINS_IP}"
 LOG_INFO "Node IP:${NODE_IP}"
 
 git clone https://github.com/TarsCloud/TarsBenchmark.git
-docker run -v $(pwd)/TarsBenchmark:/root/src mcfranklee/tars-buildenv:latest sh -c "cd /root/src/TarsBenchmark && rm -rf build && mkdir build && cd build && cmake .. && make all && make tar"
+docker run -v $(pwd)/TarsBenchmark:/root/src mcfranklee/tars-buildenv:latest sh -c "cd /root/src && rm -rf build && mkdir build && cd build && cmake .. && make all && make tar"
 
 cd TarsBenchmark
 LOG_INFO "===>install benchmark template:\n";
