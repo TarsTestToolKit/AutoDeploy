@@ -116,10 +116,10 @@ dbConf=`cat config/db.yaml`
 kvConf=`cat config/kv.yaml`
 curl -s -X POST -H "Content-Type: application/json" \
   http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
-  -d '{"application":"TarsTestToolKit","level":5,"server_name":"BackendApi","set_name":"","set_area":"","set_group":"","filename":"db.yaml","config":"${dbConf}"}'
+  -d "{\"application\":\"TarsTestToolKit\",\"level\":5,\"server_name\":\"BackendApi\",\"set_name\":\"\",\"set_area\":\"\",\"set_group\":\"\",\"filename\":\"db.yaml\",\"config\":\"${dbConf}\"}"
 curl -s -X POST -H "Content-Type: application/json" \
   http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
-  -d '{"application":"TarsTestToolKit","level":5,"server_name":"BackendApi","set_name":"","set_area":"","set_group":"","filename":"kv.yaml","config":"${kvConf}"}'
+  -d "{\"application\":\"TarsTestToolKit\",\"level\":5,\"server_name\":\"BackendApi\",\"set_name\":\"\",\"set_area\":\"\",\"set_group\":\"\",\"filename\":\"kv.yaml\",\"config\":\"${kvConf}\"}"
 
 if (( $REBUILD -eq "true" ))
 then
