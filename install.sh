@@ -120,7 +120,6 @@ curl -s -X POST -H "Content-Type: application/json" \
   -d@config/kv.json|echo
 
 if [[ $REBUILD = "true" ]]; then
-then
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
 cd TestUnits
