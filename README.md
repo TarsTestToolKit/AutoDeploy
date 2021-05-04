@@ -14,3 +14,10 @@
 | TARS_WEB_TOKEN  | The user token of tars web, to deploy servants                         |
 | ADMIN_SERVER_IP | The node IP which use to deploy tars benchmark admin servant           |
 | NODE_SERVER_IP  | The node IP which use to deploy tars benchmark client servant          |
+
+
+## Run on dev environment
+
+1. start framework docker `cd docker && docker-compose up -d`
+2. access http://127.0.0.1:3000 to obtain user token. 
+3. run install.sh to deploy
