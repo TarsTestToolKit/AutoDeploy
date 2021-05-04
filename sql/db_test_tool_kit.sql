@@ -14,8 +14,7 @@
  Date: 12/04/2021 11:49:04
  */
 DROP DATABASE IF EXISTS `db_test_tool_kit`;
-CREATE DATABASE `db_test_tool_kit`
-/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */
+CREATE DATABASE `db_test_tool_kit` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 use `db_test_tool_kit`;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
