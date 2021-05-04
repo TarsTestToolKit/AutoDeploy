@@ -119,7 +119,7 @@ curl -s -X POST -H "Content-Type: application/json" \
   http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
   -d@config/kv.json|echo
 
-if (( "${REBUILD}" = "true" ))
+if [[ $REBUILD = "true" ]]; then
 then
 ## start to build TestUnits
 git clone https://github.com/TarsTestToolKit/TestUnits.git
