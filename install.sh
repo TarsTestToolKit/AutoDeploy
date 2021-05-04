@@ -108,7 +108,7 @@ cd ..
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
 curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
-  --form "suse=@./patches/GolangTars.tgz" \
+  --form "suse=@./patches/GoTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=GolangTars" \
   --form "comment=developer-auto-upload"
