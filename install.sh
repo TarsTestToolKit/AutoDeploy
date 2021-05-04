@@ -106,11 +106,11 @@ sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" sql/services.sql
 exec_mysql_sql db_tars sql/services.sql
 exec_mysql_sql db_tars sql/db_test_tool_kit.sql
 
-sed -i "s/mysql.user/${MYSQL_USER}/g" config/db.yaml
-sed -i "s/mysql.password/${MYSQL_PASS}/g" config/db.yaml
-sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" config/db.yaml
-sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" config/kv.yaml
-sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" config/kv.yaml
+sed -i "s/mysql.user/${MYSQL_USER}/g" config/db.json
+sed -i "s/mysql.password/${MYSQL_PASS}/g" config/db.json
+sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" config/db.json
+sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" config/kv.json
+sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" config/kv.json
 
 curl -s -X POST -H "Content-Type: application/json" \
   http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
