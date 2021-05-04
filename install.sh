@@ -61,6 +61,15 @@ function LOG_INFO()
 	echo -e "\033[32m $msg \033[0m"
 }
 
+if (( $# < 8 ))
+then
+    echo $#
+    echo "$0 MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP"
+    echo "./install.sh root Rancher@12345 127.0.0.1 3306 http://10.0.0.19:3000 1bb812e8cf0da62c187ee803d473acdfb8cf097e 10.0.0.19 10.0.0.19"
+    exit 1
+fi
+
+
 MYSQL_HOST=$1
 MYSQL_PORT=$2
 MYSQL_USER=$3
@@ -113,10 +122,10 @@ sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" config/kv.json
 sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" config/kv.json
 
 curl -s -X POST -H "Content-Type: application/json" \
-  http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
+  ${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
   -d@config/db.json|echo
 curl -s -X POST -H "Content-Type: application/json" \
-  http://${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
+  ${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
   -d@config/kv.json|echo
 
 if [[ $REBUILD = "true" ]]; then
@@ -133,7 +142,7 @@ fi
 
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/GolangTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=GolangTars" \
@@ -141,7 +150,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TestUnits.PhpTars
 LOG_INFO "upload_and_publish TestUnits.PhpTars"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/PhpTars.tar.gz" \
   --form "application=TestUnits" \
   --form "module_name=PhpTars" \
@@ -149,7 +158,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TestUnits.JavaTars
 LOG_INFO "upload_and_publish TestUnits.JavaTars"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/JavaTars.jar" \
   --form "application=TestUnits" \
   --form "module_name=JavaTars" \
@@ -157,7 +166,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TestUnits.CppTars
 LOG_INFO "upload_and_publish TestUnits.CppTars"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/CppTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=CppTars" \
@@ -165,7 +174,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TestUnits.NodejsTars
 LOG_INFO "upload_and_publish TestUnits.NodejsTars"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/NodejsTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=NodejsTars" \
@@ -173,7 +182,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TarsTestToolKit.ResFetcher
 LOG_INFO "upload_and_publish TarsTestToolKit.ResFetcher"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/ResFetcher.tgz" \
   --form "application=TarsTestToolKit" \
   --form "module_name=ResFetcher" \
@@ -181,7 +190,7 @@ curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${
 
 ## TarsTestToolKit.BackendApi
 LOG_INFO "upload_and_publish TarsTestToolKit.BackendApi"
-curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/BackendApi.tgz" \
   --form "application=TarsTestToolKit" \
   --form "module_name=BackendApi" \
