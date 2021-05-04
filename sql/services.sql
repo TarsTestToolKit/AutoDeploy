@@ -101,7 +101,7 @@ replace into `t_adapter_conf` (`application`, `server_name`, `node_name`, `adapt
                                `thread_num`, `endpoint`, `max_connections`, `allow_ip`, `servant`, `queuecap`,
                                `queuetimeout`, `posttime`, `lastuser`, `protocol`, `handlegroup`)
 VALUES ('TarsTestToolKit', 'BackendApi', 'localip.tarsadmin.com', 'TarsTestToolKit.BackendApi.apiObjAdapter', now(), 5,
-        'tcp -h localip.tars.com -t 60000 -p 9001', 2000, '', 'TarsTestToolKit.BackendApi.apiObj', 10000, 60000, now(),
+        'tcp -h localip.tarsadmin.com -t 60000 -p 9001', 2000, '', 'TarsTestToolKit.BackendApi.apiObj', 10000, 60000, now(),
         'admin', 'tars', '');
 replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_name`, `registry_timestamp`,
                               `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
