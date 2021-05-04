@@ -107,7 +107,7 @@ cd ..
 
 ## TestUnits.GolangTars
 LOG_INFO "upload_and_publish TestUnits.GolangTars"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/GoTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=GolangTars" \
@@ -115,7 +115,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TestUnits.PhpTars
 LOG_INFO "upload_and_publish TestUnits.PhpTars"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/PhpTars.tar.gz" \
   --form "application=TestUnits" \
   --form "module_name=PhpTars" \
@@ -123,7 +123,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TestUnits.JavaTars
 LOG_INFO "upload_and_publish TestUnits.JavaTars"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/JavaTars.jar" \
   --form "application=TestUnits" \
   --form "module_name=JavaTars" \
@@ -131,7 +131,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TestUnits.CppTars
 LOG_INFO "upload_and_publish TestUnits.CppTars"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/CppTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=CppTars" \
@@ -139,7 +139,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TestUnits.NodejsTars
 LOG_INFO "upload_and_publish TestUnits.NodejsTars"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/NodejsTars.tgz" \
   --form "application=TestUnits" \
   --form "module_name=NodejsTars" \
@@ -147,7 +147,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TarsTestToolKit.ResFetcher
 LOG_INFO "upload_and_publish TarsTestToolKit.ResFetcher"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/ResFetcher.tgz" \
   --form "application=TarsTestToolKit" \
   --form "module_name=ResFetcher" \
@@ -155,7 +155,7 @@ curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
 
 ## TarsTestToolKit.BackendApi
 LOG_INFO "upload_and_publish TarsTestToolKit.BackendApi"
-curl -i --request POST "http://127.0.0.1:3000/api/upload_and_publish" \
+curl -i --request POST "http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
   --form "suse=@./patches/BackendApi.tgz" \
   --form "application=TarsTestToolKit" \
   --form "module_name=BackendApi" \
