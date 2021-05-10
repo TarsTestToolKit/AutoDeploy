@@ -49,7 +49,7 @@ replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_
                               `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
                               `process_id`, `patch_version`, `patch_time`, `patch_user`, `tars_version`, `posttime`,
                               `lastuser`, `server_type`, `profile`)
-VALUES ('TestUnits', 'NodejsTars', '', 'localip.tars.com', now(), '', '', 'tars.NodejsTars.default', 0, 'active', 'active', 0,
+VALUES ('TestUnits', 'NodejsTars', '', 'localip.tars.com', now(), '', '', 'tars.nodejs.default', 0, 'active', 'active', 0,
         '2.1.0', now(), '', '2.1.0', now(), 'admin', 'tars_nodejs', '');
 
 
