@@ -97,7 +97,7 @@ fi
 
 LOG_INFO "Start to install TarsBenchmark"
 ## install TarsBenchmark
-./install-tb.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${NODE_SERVER_IP}"
+./install-tb.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${ADMIN_SERVER_IP}"
 
 #exec sql
 function exec_mysql_sql()
@@ -110,23 +110,25 @@ function exec_mysql_sql()
 
     return $ret
 }
-sed -i "s/localip.tars.com/${NODE_SERVER_IP}/g" sql/services.sql
-sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" sql/services.sql
-exec_mysql_sql db_tars sql/services.sql
-exec_mysql_sql db_tars sql/db_test_tool_kit.sql
+cp -f sql/* patches/
+sed -i "s/localip.tars.com/${NODE_SERVER_IP}/g" patches/services.sql
+sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" patches/services.sql
+exec_mysql_sql db_tars patches/services.sql
+exec_mysql_sql db_tars patches/db_test_tool_kit.sql
 
-sed -i "s/mysql.user/${MYSQL_USER}/g" config/db.json
-sed -i "s/mysql.password/${MYSQL_PASS}/g" config/db.json
-sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" config/db.json
-sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" config/kv.json
-sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" config/kv.json
+cp -f config/* patches/
+sed -i "s/mysql.user/${MYSQL_USER}/g" patches/db.json
+sed -i "s/mysql.password/${MYSQL_PASS}/g" patches/db.json
+sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" patches/db.json
+sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" patches/kv.json
+sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" patches/kv.json
 
 curl -s -X POST -H "Content-Type: application/json" \
   ${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
-  -d@config/db.json|echo
+  -d@patches/db.json|echo
 curl -s -X POST -H "Content-Type: application/json" \
   ${TARS_WEB_HOST}/api/add_config_file?ticket=${TARS_WEB_TOKEN} \
-  -d@config/kv.json|echo
+  -d@patches/kv.json|echo
 
 if [[ $REBUILD = "true" ]]; then
 ## start to build TestUnits

@@ -33,12 +33,14 @@ cd TarsBenchmark
 LOG_INFO "===>install benchmark template:\n";
 curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/add_profile_template?ticket=${TARS_WEB_TOKEN} -d@assets/template.json|echo
 
+cp assets/nodeserver.json build/
+cp assets/adminserver.json build/
 LOG_INFO "===>install nodeserver:\n";
-sed -i "s/host_ip/$NODE_SERVER_IP/g" assets/nodeserver.json
-curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/deploy_server?ticket=${TARS_WEB_TOKEN} -d@assets/nodeserver.json|echo
+sed -i "s/host_ip/$NODE_SERVER_IP/g" build/nodeserver.json
+curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/deploy_server?ticket=${TARS_WEB_TOKEN} -d@build/nodeserver.json|echo
 LOG_INFO "===>install adminserver:\n";
-sed -i "s/host_ip/$ADMIN_SERVER_IP/g" assets/adminserver.json
-curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/deploy_server?ticket=${TARS_WEB_TOKEN} -d@assets/adminserver.json|echo
+sed -i "s/host_ip/$ADMIN_SERVER_IP/g" build/adminserver.json
+curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/deploy_server?ticket=${TARS_WEB_TOKEN} -d@build/adminserver.json|echo
 
 cd build
 LOG_INFO "===>upload adminserver:\n"
