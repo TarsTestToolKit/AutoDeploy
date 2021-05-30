@@ -131,15 +131,15 @@ curl -s -X POST -H "Content-Type: application/json" \
   -d@patches/kv.json|echo
 
 if [[ $REBUILD = "true" ]]; then
-## start to build TestUnits
-git clone https://github.com/TarsTestToolKit/TestUnits.git
-cd TestUnits
-./build-docker.sh
-mv ./patches/* ../patches
-cd ..
+  ## start to build TestUnits
+  git clone https://github.com/TarsTestToolKit/TestUnits.git
+  cd TestUnits
+  ./build-docker.sh
+  mv ./patches/* ../patches
+  cd ..
 
-## build backend
-./build-backend.sh
+  ## build backend
+  ./build-backend.sh
 fi
 
 ## TestUnits.GolangTars
