@@ -33,8 +33,8 @@ cd TarsBenchmark
 LOG_INFO "===>install benchmark template:\n";
 curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/add_profile_template?ticket=${TARS_WEB_TOKEN} -d@assets/template.json|echo
 
-cp assets/nodeserver.json build/
-cp assets/adminserver.json build/
+cp -f assets/nodeserver.json build/
+cp -f assets/adminserver.json build/
 LOG_INFO "===>install nodeserver:\n";
 sed -i "s/host_ip/$NODE_SERVER_IP/g" build/nodeserver.json
 curl -s -X POST -H "Content-Type: application/json" http://${TARS_WEB_HOST}/api/deploy_server?ticket=${TARS_WEB_TOKEN} -d@build/nodeserver.json|echo
@@ -46,4 +46,4 @@ cd build
 LOG_INFO "===>upload adminserver:\n"
 curl -s http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN} -Fsuse=@AdminServer.tgz -Fapplication=benchmark -Fmodule_name=AdminServer -Fcomment=auto-upload|echo
 LOG_INFO "===>upload nodeserver:\n"
-curl -s http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN} -Fsuse=@NodeServer.tgz -Fapplication=benchmark -Fmodule_name=NodeServer -Fcomment=auto-upload
+curl -s http://${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN} -Fsuse=@NodeServer.tgz -Fapplication=benchmark -Fmodule_name=NodeServer -Fcomment=auto-upload|echo

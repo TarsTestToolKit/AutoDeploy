@@ -21,3 +21,17 @@ sudo /bin/bash install.sh $MYSQL_HOST $MYSQL_PORT $MYSQL_USER $MYSQL_PASS $TARS_
 1. start framework docker `cd docker && docker-compose up -d`
 2. access http://127.0.0.1:3000 to obtain user token.
 3. run install.sh to deploy
+
+## After run script
+
+You will see follow servers in the list.
+
+![servers](./servers.png)
+
+Please alter the config content in db.yaml and kv.yaml to make sure they were set properly
+
+![configs](./configs.png)
+
+## Last Note
+
+Please install TarsBenchmark manually if we failed.
