@@ -93,7 +93,7 @@ replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_
                               `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
                               `process_id`, `patch_version`, `patch_time`, `patch_user`, `tars_version`, `posttime`,
                               `lastuser`, `server_type`, `profile`)
-VALUES ('TarsTestToolKit', 'ResFetcher', '', 'localip.tars.com', now(), '', '', 'tars.default', 0, 'active', 'active',
+VALUES ('TarsTestToolKit', 'ResFetcher', '', 'localip.tars.com', now(), '', '', 'tars.go.default', 0, 'active', 'active',
         0, '2.1.0', now(), '', '2.1.0', now(), 'admin', 'tars_go', '');
 
 ###BackendApi
@@ -107,5 +107,19 @@ replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_
                               `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
                               `process_id`, `patch_version`, `patch_time`, `patch_user`, `tars_version`, `posttime`,
                               `lastuser`, `server_type`, `profile`)
-VALUES ('TarsTestToolKit', 'BackendApi', '', 'localip.tarsadmin.com', now(), '', '', 'tars.default', 0, 'active', 'active',
+VALUES ('TarsTestToolKit', 'BackendApi', '', 'localip.tarsadmin.com', now(), '', '', 'tars.go.default', 0, 'active', 'active',
         0, '2.1.0', now(), '', '2.1.0', now(), 'admin', 'tars_go', '');
+
+###FrontendApi
+replace into `t_adapter_conf` (`application`, `server_name`, `node_name`, `adapter_name`, `registry_timestamp`,
+                               `thread_num`, `endpoint`, `max_connections`, `allow_ip`, `servant`, `queuecap`,
+                               `queuetimeout`, `posttime`, `lastuser`, `protocol`, `handlegroup`)
+VALUES ('TarsTestToolKit', 'Frontend', 'localip.tarsadmin.com', 'TarsTestToolKit.Frontend.webObjAdapter', now(), 5,
+        'tcp -h localip.tarsadmin.com -t 60000 -p 8080', 2000, '', 'TarsTestToolKit.Frontend.webObj', 10000, 60000, now(),
+        'admin', 'tars', '');
+replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_name`, `registry_timestamp`,
+                              `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
+                              `process_id`, `patch_version`, `patch_time`, `patch_user`, `tars_version`, `posttime`,
+                              `lastuser`, `server_type`, `profile`)
+VALUES ('TarsTestToolKit', 'Frontend', '', 'localip.tarsadmin.com', now(), '', '', 'tars.nodejs.default', 0, 'active', 'active',
+        0, '2.1.0', now(), '', '2.1.0', now(), 'admin', 'tars_nodejs', '');
