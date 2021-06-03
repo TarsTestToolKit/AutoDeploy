@@ -197,3 +197,11 @@ curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WE
   --form "application=TarsTestToolKit" \
   --form "module_name=BackendApi" \
   --form "comment=developer-auto-upload"
+
+## TarsTestToolKit.Frontend
+LOG_INFO "upload_and_publish TarsTestToolKit.Frontend"
+curl -i --request POST "${TARS_WEB_HOST}/api/upload_and_publish?ticket=${TARS_WEB_TOKEN}" \
+  --form "suse=@./patches/Frontend.tgz" \
+  --form "application=TarsTestToolKit" \
+  --form "module_name=Frontend" \
+  --form "comment=developer-auto-upload"
