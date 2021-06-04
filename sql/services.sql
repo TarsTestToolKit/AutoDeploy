@@ -116,7 +116,7 @@ replace into `t_adapter_conf` (`application`, `server_name`, `node_name`, `adapt
                                `queuetimeout`, `posttime`, `lastuser`, `protocol`, `handlegroup`)
 VALUES ('TarsTestToolKit', 'Frontend', 'localip.tarsadmin.com', 'TarsTestToolKit.Frontend.webObjAdapter', now(), 5,
         'tcp -h localip.tarsadmin.com -t 60000 -p 8080', 2000, '', 'TarsTestToolKit.Frontend.webObj', 10000, 60000, now(),
-        'admin', 'tars', '');
+        'admin', 'not_tars', '');
 replace into `t_server_conf` (`application`, `server_name`, `node_group`, `node_name`, `registry_timestamp`,
                               `base_path`, `exe_path`, `template_name`, `bak_flag`, `setting_state`, `present_state`,
                               `process_id`, `patch_version`, `patch_time`, `patch_user`, `tars_version`, `posttime`,
