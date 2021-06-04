@@ -110,6 +110,9 @@ function exec_mysql_sql()
 
     return $ret
 }
+
+mkdir -p patches
+
 cp -f sql/* patches/
 sed -i "s/localip.tars.com/${NODE_SERVER_IP}/g" patches/services.sql
 sed -i "s/localip.tarsadmin.com/${ADMIN_SERVER_IP}/g" patches/services.sql
@@ -120,7 +123,7 @@ cp -f config/* patches/
 sed -i "s/mysql.user/${MYSQL_USER}/g" patches/db.json
 sed -i "s/mysql.password/${MYSQL_PASS}/g" patches/db.json
 sed -i "s/mysql.address/${MYSQL_HOST}:${MYSQL_PORT}/g" patches/db.json
-sed -i "s/tars.web.host/${TARS_WEB_HOST}/g" patches/kv.json
+sed -i "s#tars.web.host#${TARS_WEB_HOST}#g" patches/kv.json
 sed -i "s/tars.web.token/${TARS_WEB_TOKEN}/g" patches/kv.json
 
 curl -s -X POST -H "Content-Type: application/json" \
