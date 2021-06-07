@@ -26,8 +26,8 @@ LOG_INFO "Web token:${TARS_WEB_TOKEN}"
 LOG_INFO "Admins IP:${ADMIN_SERVER_IP}"
 LOG_INFO "Node IP:${NODE_SERVER_IP}"
 
-#git clone https://github.com/TarsCloud/TarsBenchmark.git
-#docker run -v $(pwd)/TarsBenchmark:/root/src tarscloud/compiler:latest sh -c "cd /root/src && rm -rf build && mkdir build && cd build && cmake .. && make all && make tar"
+git clone https://github.com/TarsCloud/TarsBenchmark.git
+docker run -v $(pwd)/TarsBenchmark:/root/src tarscloud/compiler:latest sh -c "cd /root/src && rm -rf build && mkdir build && cd build && cmake .. && make all && make tar"
 
 cd TarsBenchmark
 LOG_INFO "===>install benchmark template:\n";
