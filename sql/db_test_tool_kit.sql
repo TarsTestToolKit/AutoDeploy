@@ -96,8 +96,11 @@ CREATE TABLE `tbl_perf_tests` (
   `pkg_len` int(10) unsigned DEFAULT NULL COMMENT '压测包大小：0K,1K...',
   `start_time` int(10) unsigned NOT NULL COMMENT '开始时间',
   `end_time` int(10) unsigned NOT NULL COMMENT '结束时间',
-  `finished` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否压测完成',
+  `finished` tinyint(1) unsigned NOT NULL DEFAULT 0 COMMENT '是否压测完成',
+  `memo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `warm_up` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '预热时间(s)',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_serv_type` (`serv_type`(64)),
   KEY `idx_time` (`start_time`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 SET FOREIGN_KEY_CHECKS = 1;
