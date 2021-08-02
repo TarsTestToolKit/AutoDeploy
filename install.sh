@@ -64,8 +64,8 @@ function LOG_INFO()
 if (( $# < 8 ))
 then
     echo $#
-    echo "$0 MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP"
-    echo "./install.sh root Rancher@12345 127.0.0.1 3306 http://10.0.0.19:3000 1bb812e8cf0da62c187ee803d473acdfb8cf097e 10.0.0.19 10.0.0.19"
+    echo "$0 MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP REBUILD"
+    echo "./install.sh 10.0.0.40 3306 root Arm@12345 http://192.168.122.118:3000 97f723e96bee3543948e69aa6d62d660596ee1bd 192.168.122.118 192.168.122.191 true"
     exit 1
 fi
 
@@ -89,14 +89,9 @@ LOG_INFO "Tars Admin IP:${ADMIN_SERVER_IP}"
 LOG_INFO "Tars Node IP:${NODE_SERVER_IP}"
 LOG_INFO "Rebuild:${REBUILD}"
 
-if (( $# < 8 ))
-then
-LOG_ERROR "You should run script like: ./install.sh MYSQL_HOST MYSQL_PORT MYSQL_USER MYSQL_PASS TARS_WEB_HOST TARS_WEB_TOKEN ADMIN_SERVER_IP NODE_SERVER_IP IS_REBUILD(true or false)"
-exit 1
-fi
-
 LOG_INFO "Start to install TarsBenchmark"
 ## install TarsBenchmark
+echo "./install-tb.sh ${TARS_WEB_HOST} ${TARS_WEB_TOKEN} ${ADMIN_SERVER_IP} ${ADMIN_SERVER_IP}"
 ./install-tb.sh "${TARS_WEB_HOST}" "${TARS_WEB_TOKEN}" "${ADMIN_SERVER_IP}" "${ADMIN_SERVER_IP}"
 
 #exec sql
